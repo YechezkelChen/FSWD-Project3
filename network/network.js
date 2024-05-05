@@ -1,5 +1,7 @@
 class Network {
-    server = new Server();
+    constructor() {
+        this.server = new Server();
+    }
 
     sendToServerAsync(request, dispatcher) {
         this.server.handleRequest(request, dispatcher);

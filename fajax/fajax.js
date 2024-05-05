@@ -30,6 +30,10 @@ class FXMLHttpRequest {
     upload = null;
     withCredentials = false;
 
+    constructor() {
+        this.network = new Network();
+    }
+
     // Functions
     abort() {
         if (this.readyState !== FXMLHttpRequest.UNSENT && this.readyState !== FXMLHttpRequest.DONE) {
@@ -111,28 +115,28 @@ class FXMLHttpRequest {
             throw new Error('Invalid state');
         }
 
-        const network = new Network();
         const data = this.data;
+        if (body)
+            body = JSON.parse(body)
+
         if (this.data.async) {
-            network.sendToServerAsync(JSON.stringify({ data, body }), (response) => {
-                this.responseHeaders = response.headers;
-                this.response = response.body;
-                this.readyState = FXMLHttpRequest.DONE;
-                this.dispatchEvent(new Event('readystatechange'));
-                this.dispatchEvent(new Event('load'));
-                this.dispatchEvent(new Event('loadend'));
-                func();
+            this.network.sendToServerAsync(JSON.stringify({ data, body }), (response) => {
+                this.processResponse(response, func);
             });
 
         } else {
-            response = network.sendToServer(JSON.stringify({ data, body }))
-            this.responseHeaders = response.headers;
-            this.response = response.body;
-            this.readyState = FXMLHttpRequest.DONE;
-            this.dispatchEvent(new Event('readystatechange'));
-            this.dispatchEvent(new Event('load'));
-            this.dispatchEvent(new Event('loadend'));
-            func();
+            const response = this.network.sendToServer(JSON.stringify({ data, body }));
+            this.processResponse(response, func);
         }
+    }
+
+    processResponse(response, callback) {
+        this.responseText = response.text
+        this.status = response.status
+        this.readyState = FXMLHttpRequest.DONE;
+        if (this.onreadystatechange) this.onreadystatechange()
+        if (this.onload) this.onload()
+        if (this.onloadend) this.onloadend()
+        callback();
     }
 }
