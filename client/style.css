@@ -1,0 +1,42 @@
+form li{
+    list-style: none;
+    margin-bottom: 20px;
+    
+}
+form ul{
+    padding-left: 0;
+    color: rgb(15, 16, 15);
+}
+.h1{
+    background-color: aliceblue;
+}
+.text{
+    background-color: rgb(161, 207, 247);
+}
+
+body {
+   
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+    background: url('https://www.konicaminolta.com.au/getmedia/f35aec63-635c-4326-b767-cd3b6276a078/company-history.jpg?width=2000&height=1083&ext=.jpg');
+    background-blend-mode: darken;
+    background-size: contain; 
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-sizing: border-box; 
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    text-shadow: 0 0 20px rgb(109, 69, 69);
+    width: 100%;
+}
+
+.b_l_i , .b_s_u,.bli , .bsu
+{
+    font-size: 1.5rem; 
+    font-weight: bold;
+    padding:10px 20px;
+
+    
+}
