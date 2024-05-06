@@ -8,10 +8,10 @@ class DBApi {
 
     // CRUD for users managment
 
-    createUser(username, password, firstName, lastName, phone, address) {
+    createUser(username, password, firstName, lastName, phoneNumber, address) {
         const db = JSON.parse(localStorage.contactsDB);
         if (!this.readUser(username)) {
-            db.users.push({ [username]: [{ password }, { firstName }, { lastName }, { phone }, { address }] });
+            db.users.push({ [username]: [{ password }, { firstName }, { lastName }, { phoneNumber }, { address }] });
             localStorage.contactsDB = JSON.stringify(db);
             return true;
         }
@@ -33,8 +33,8 @@ class DBApi {
         const userIndex = db.users.findIndex(user => Object.keys(user)[0] === username);
         if (userIndex !== -1) {
             if (newPassword) db.users[userIndex][username][0].password = newPassword;
-            if (newFirstName) db.users[userIndex][username][1].firstname = newFirstName;
-            if (newLastName) db.users[userIndex][username][2].lastname = newLastName;
+            if (newFirstName) db.users[userIndex][username][1].firstName = newFirstName;
+            if (newLastName) db.users[userIndex][username][2].lastName = newLastName;
             if (newPhoneNumber) db.users[userIndex][username][3].phoneNumber = newPhoneNumber;
             if (newAddress) db.users[userIndex][username][4].address = newAddress;
             localStorage.contactsDB = JSON.stringify(db);
