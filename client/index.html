@@ -5,78 +5,69 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="style.css">
-	<template id="entrence1">
-		<title>Entrence page</title>
-	</template>
-	<template id="Login1">
-		<title>Login page</title>
-	</template>
-	<template id="Sign_up1">
-		<title>Sign up page</title>
-	</template>
-
+	<title>Contacts Manager</title>
 </head>
 
 <body>
 	<div id="container">
-		<template id="entrence2">
-			<div id="entrenceDiv">
+		<template id="template_entrence">
+			<div id="div_entrence1">
 				<h1 class="h1"><strong>Welcome to the company contact managing system</strong></h1>
 				<button id="button_login" class="b_l_i">Login</button>
 				<button id="button_sign_up" class="b_s_u">Sign Up</button>
 			</div>
 		</template>
 
-		<template id="Login2">
-			<div id="Login" class="form">
+		<template id="template_login">
+			<div id="div_login">
 				<h2>Login</h2>
-				<form action="" method="post">
+				<form>
 					<ul>
 						<li>
-							<label for="username" class="text"><strong>Please enter username :</strong></label>
-							<input id="username" name="username" />
+							<label for="login_username" class="text"><strong>Please enter username :</strong></label>
+							<input id="login_username" name="login_username" />
 						</li>
 						<li>
-							<label for="password" class="text"><strong>Please enter password :</strong></label>
-							<input type="password" id="password" name="password" />
+							<label for="login_password" class="text"><strong>Please enter password :</strong></label>
+							<input type="password" id="login_password" name="login_password" />
 						</li>
-						<li><button id="button_log_in" class="bli">Login!</button></li>
+						<li><button id="log_in_button" class="bli">Login!</button></li>
 					</ul>
 				</form>
 			</div>
 		</template>
-		<template id="Sign_up2">
-			<div id="Sign_up" class="form">
+
+		<template id="template_sign_up">
+			<div id="div_sign_up">
 				<h2>Sign up</h2>
-				<form action="" method="post">
-					<ul>
-						<li>
-							<label for="username" class="text"><strong>Please choose a username :</strong></label>
-							<input id="username" name="username" />
-						</li>
-						<li>
-							<label for="password" class="text"><strong>Please choose a password :</strong></label>
-							<input type="password" id="password" name="password" />
-						</li>
-						<li>
-							<label for="first_name" class="text"><strong>Please enter your first name :</strong></label>
-							<input id="first_name" name="first_name" />
-						</li>
-						<li>
-							<label for="last_name" class="text"><strong>Please enter your last name :</strong></label>
-							<input id="last_name" name="last_name" />
-						</li>
-						<li>
-							<label for="phone" class="text"><strong>Please enter your phone number :</strong></label>
-							<input id="phone" name="phone" />
-						</li>
-						<li>
-							<label for="address" class="text"><strong>Please enter your address :</strong></label>
-							<input id="address" name="address" />
-						</li>
-						<li><button id="button_sign_up" class="bsu">Sign up!</button></li>
-					</ul>
+				<form>
+					<label for="signup_username" class="text"><strong>Please choose a username:</strong></label>
+					<input id="signup_username" name="signup_username" />
+
+					<label for="signup_password" class="text"><strong>Please choose a password:</strong></label>
+					<input id="signup_password" type="password" name="signup_password" />
+
+					<label for="signup_first_name" class="text"><strong>Please enter your first name:</strong></label>
+					<input id="signup_first_name" name="signup_first_name" />
+
+					<label for="signup_last_name" class="text"><strong>Please enter your last name:</strong></label>
+					<input id="signup_last_name" name="signup_last_name" />
+
+					<label for="signup_phone_number" class="text"><strong>Please enter your phone
+							number:</strong></label>
+					<input id="signup_phone_number" name="signup_phone_number" />
+
+					<label for="signup_address" class="text"><strong>Please enter your address:</strong></label>
+					<input id="signup_address" name="signup_address" />
+
+					<button id="sign_up_button" class="bsu">Sign up!</button></li>
 				</form>
+			</div>
+		</template>
+
+		<template id="template_contacts_list">
+			<div id="div_contacts_list">
+
 			</div>
 		</template>
 
