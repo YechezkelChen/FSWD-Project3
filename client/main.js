@@ -13,16 +13,6 @@ function hideContent(element_id) {
 
 }
 
-function generateTable(data) {
-    let table = '<table>';
-    table += '<tr><th>First Name</th><th>Last Name</th><th>Phone Number</th><th>Address</th></tr>';
-    data.forEach(item => {
-        table += `<tr><td>${item.firstName}</td><td>${item.lastName}</td><td>${item.phoneNumber}</td><td>${item.address}</td></tr>`;
-    });
-    table += '</table>';
-    return table;
-}
-
 document.addEventListener('DOMContentLoaded', function () {
     showContent("template_entrence");
 
@@ -93,32 +83,80 @@ function login() {
         };
         fxhr.send();
 
-        hideContent("div_login");
-        showContent("template_contacts_list");
-        getContacts(user.username);
-        // alert(user)
-        // if (user && user.password === password)
-        // {
-        //     alert("jhvblk;l,;oilh")
-        //     //showContent("");
-        // }
-        // else
-        // {
-        //     alert("your username or password inccorect")
-        // }
+        if (user && user[username][0].password === password) {
+            hideContent("div_login");
+            showContent("template_contacts_list");
+            getContacts(username);
+        }
+        else {
+            alert("your username or password inccorect")
+        }
     })
 }
 
 
 function getContacts(username) {
-    const templateContactsList = document.getElementById("template_contacts_list");
-    // const fxhr = new FXMLHttpRequest();
-    // const newContact = {
-    //     username: 'a',
-    //     contactName: 'new_contact',
-    //     phoneNumber: '9876543210'
-    // };
-    // fxhr.open('POST', '/contact', true, 'a');
+    const fxhr = new FXMLHttpRequest();
+
+    let contacts = null;
+    fxhr.open('GET', '/contacts', true, username);
+    fxhr.onload = function () {
+        if (fxhr.status >= 200 && fxhr.status < 300) {
+            contacts = JSON.parse(fxhr.responseText);
+            console.log('Contacts:', contacts);
+        } else {
+            console.error('Failed to retrieve contacts:', fxhr.statusText);
+        }
+    };
+    fxhr.send();
+
+    const tableContainer = document.getElementById('div_contacts_list');
+    tableContainer.innerHTML += generateContactsTable(contacts, username);
+
+
+
+
+    // contacts.forEach(contact => {
+    //     const contactItem = document.createElement("div");
+    //     contactItem.classList.add("contact-item");
+    //     contactItem.innerHTML = `
+    //         <span>${contact.name}</span>
+    //         <span>${contact.phone}</span>
+    //         <button onclick="deleteContact(${contact.id})" class="btn btn-delete">Delete</button>
+    //     `;
+    //     divContactList.appendChild(contactItem);
+
+
+    //     // hideContent("Sign_up1");
+    //     // hideContent("Sign_up2");
+    //     // showContent("Login1");
+    //     // showContent("Login2");
+    // })
+
+}
+
+
+function generateContactsTable(contacts, username) {
+    let table = '<table>';
+    table += '<tr><th>Name</th><th>Phone Number</th><th>    </th></tr>';
+    contacts.forEach(contact => {
+        for (const contactName in contact[username][0])
+            table += `<tr><td><input type='text' value='${contactName}'></td><td><input type='text' value='${contact[username][0][contactName]}'</td><td><button onclick="editContact()">Edit Contact</button></td><td><button onclick="removeContact()">Remove Contact</button></td></tr>`;
+    });
+    table += '</table>';
+    return table;
+}
+
+function addContact(username) {
+    console.log("add")
+    const fxhr = new FXMLHttpRequest();
+    const newContact = {
+        username: username,
+        contactName: document.getElementById("").value,
+        phoneNumber: document.getElementById("").value
+    };
+
+    // fxhr.open('POST', '/contact', true, username);
     // fxhr.setRequestHeader('Content-Type', 'application/json');
     // fxhr.onload = function () {
     //     if (fxhr.status >= 200 && fxhr.status < 300) {
@@ -128,44 +166,24 @@ function getContacts(username) {
     //     }
     // };
     // fxhr.send(JSON.stringify(newContact));
-
-    templateContactsList.addEventListener('load', () => {
-        const fxhr = new FXMLHttpRequest();
-
-        let contacts = null;
-        fxhr.open('GET', '/contacts', true, username);
-        fxhr.onload = function () {
-            if (fxhr.status >= 200 && fxhr.status < 300) {
-                contacts = JSON.parse(fxhr.responseText);
-                const tableContainer = document.getElementById('div_contacts_list');
-                tableContainer.innerHTML = generateTable(contacts);
-                console.log('Contacts:', contacts);
-            } else {
-                console.error('Failed to retrieve contacts:', fxhr.statusText);
-            }
-        };
-        fxhr.send();
-
-
-        const divContactList = document.getElementById("div_contacts_list");
-        divContactList.innerHTML = "";
-
-        contacts.forEach(contact => {
-            const contactItem = document.createElement("div");
-            contactItem.classList.add("contact-item");
-            contactItem.innerHTML = `
-                <span>${contact.name}</span>
-                <span>${contact.phone}</span>
-                <button onclick="deleteContact(${contact.id})" class="btn btn-delete">Delete</button>
-            `;
-            divContactList.appendChild(contactItem);
-
-
-            // hideContent("Sign_up1");
-            // hideContent("Sign_up2");
-            // showContent("Login1");
-            // showContent("Login2");
-        })
-    })
 }
 
+function editContact() {
+    console.log("edit")
+
+}
+
+function removeContact() {
+    console.log("remove")
+
+}
+
+function generateUsersTable(data) {
+    let table = '<table>';
+    table += '<tr><th>First Name</th><th>Last Name</th><th>Phone Number</th><th>Address</th></tr>';
+    data.forEach(item => {
+        table += `<tr><td>${item.firstName}</td><td>${item.lastName}</td><td>${item.phoneNumber}</td><td>${item.address}</td></tr>`;
+    });
+    table += '</table>';
+    return table;
+}

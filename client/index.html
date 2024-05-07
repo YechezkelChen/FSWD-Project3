@@ -22,17 +22,13 @@
 			<div id="div_login">
 				<h2>Login</h2>
 				<form>
-					<ul>
-						<li>
-							<label for="login_username" class="text"><strong>Please enter username :</strong></label>
-							<input id="login_username" name="login_username" />
-						</li>
-						<li>
-							<label for="login_password" class="text"><strong>Please enter password :</strong></label>
-							<input type="password" id="login_password" name="login_password" />
-						</li>
-						<li><button id="log_in_button" class="bli">Login!</button></li>
-					</ul>
+					<label for="login_username" class="text"><strong>Please enter username :</strong></label>
+					<input id="login_username" name="login_username" />
+					<br>
+					<label for="login_password" class="text"><strong>Please enter password :</strong></label>
+					<input type="password" id="login_password" name="login_password" />
+					<br>
+					<button id="log_in_button" class="bli">Login!</button>
 				</form>
 			</div>
 		</template>
@@ -43,23 +39,23 @@
 				<form>
 					<label for="signup_username" class="text"><strong>Please choose a username:</strong></label>
 					<input id="signup_username" name="signup_username" />
-
+					<br>
 					<label for="signup_password" class="text"><strong>Please choose a password:</strong></label>
 					<input id="signup_password" type="password" name="signup_password" />
-
+					<br>
 					<label for="signup_first_name" class="text"><strong>Please enter your first name:</strong></label>
 					<input id="signup_first_name" name="signup_first_name" />
-
+					<br>
 					<label for="signup_last_name" class="text"><strong>Please enter your last name:</strong></label>
 					<input id="signup_last_name" name="signup_last_name" />
-
+					<br>
 					<label for="signup_phone_number" class="text"><strong>Please enter your phone
 							number:</strong></label>
 					<input id="signup_phone_number" name="signup_phone_number" />
-
+					<br>
 					<label for="signup_address" class="text"><strong>Please enter your address:</strong></label>
 					<input id="signup_address" name="signup_address" />
-
+					<br>
 					<button id="sign_up_button" class="bsu">Sign up!</button>
 				</form>
 			</div>
@@ -67,8 +63,8 @@
 
 		<template id="template_contacts_list">
 			<div id="div_contacts_list">
-				<button id="add_contact_button" class="acb">Add Contact !</button>	
-				<button id="sign_out_button" class="sob">Sign Out !</button>	
+				<button onclick="addContact()">Add Contact</button>
+				<button id="sign_out_button" class="sob">Sign Out</button>
 			</div>
 		</template>
 
