@@ -61,14 +61,51 @@
 			</div>
 		</template>
 
+		<template id="templateAddContact">
+			<div id="divAddContact">
+				<label for="addContactName" class="text"><strong>Contact Name:</strong></label>
+				<input id="addContactName" name="addContactName" />
+				<br>
+				<label for="addContactPhoneNumber" class="text"><strong>Phone Number:</strong></label>
+				<input id="addContactPhoneNumber" name="addContactPhoneNumber" />
+				<br>
+				<button id="addContact" class="sb">Add</button>
+			</div>
+		</template>
+
 		<template id="template_contacts_list">
 			<div id="div_contacts_list">
 				<button onclick="addContact()">Add Contact</button>
-				<button>Edit personal details</button>
+				<button onclick="editPersonalDetails()">Edit personal details</button>
 				<button>Sign Out</button>
 			</div>
 		</template>
 
+		<template id="templateUsersList">
+			<div id="divUsersList">
+			</div>
+		</template>
+
+		<template id="template_edit_user_details">
+			<div id="div_edit_user_details">
+				<label for="edit_password" class="text"><strong> First Name:</strong></label>
+				<input id="edit_password" name="edit_password" />
+				<br>
+				<label for="edit_first_name" class="text"><strong> First Name:</strong></label>
+				<input id="edit_first_name" name="edit_first_name" />
+				<br>
+				<label for="edit_last_name" class="text"><strong> Last Name:</strong></label>
+				<input id="edit_last_name" name="edit_last_name" />
+				<br>
+				<label for="edit_phone_number" class="text"><strong> Phone Number:</strong></label>
+				<input id="edit_phone_number" name="edit_phone_number" />
+				<br>
+				<label for="edit_address" class="text"><strong> Address:</strong></label>
+				<input id="edit_address" name="edit_address" />
+				<br>
+				<button id="editUserButton" class="sb">Save chenges!</button>
+			</div>
+		</template>
 	</div>
 	<script src="main.js"></script>
 	<script src="../dbApi/dbApi.js"></script>
