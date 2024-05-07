@@ -187,3 +187,7 @@ function generateUsersTable(data) {
     table += '</table>';
     return table;
 }
+
+function editPersonalDetails() {
+    
+}
