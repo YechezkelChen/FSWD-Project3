@@ -13,18 +13,28 @@ function hideContent(element_id) {
 
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+function generateTable(data) {
+    let table = '<table>';
+    table += '<tr><th>First Name</th><th>Last Name</th><th>Phone Number</th><th>Address</th></tr>';
+    data.forEach(item => {
+        table += `<tr><td>${item.firstName}</td><td>${item.lastName}</td><td>${item.phoneNumber}</td><td>${item.address}</td></tr>`;
+    });
+    table += '</table>';
+    return table;
+}
+
+document.addEventListener('DOMContentLoaded', function () {
     showContent("template_entrence");
 
     const signup_button = document.getElementById("button_sign_up");
-    signup_button.addEventListener('click', function() {
+    signup_button.addEventListener('click', function () {
         hideContent("div_entrence1");
         showContent("template_sign_up");
         signup()
     });
 
     const login_button = document.getElementById("button_login");
-    login_button.addEventListener('click', function() {
+    login_button.addEventListener('click', function () {
         hideContent("div_entrence1");
         showContent("template_login");
         login()
@@ -127,6 +137,8 @@ function getContacts(username) {
         fxhr.onload = function () {
             if (fxhr.status >= 200 && fxhr.status < 300) {
                 contacts = JSON.parse(fxhr.responseText);
+                const tableContainer = document.getElementById('div_contacts_list');
+                tableContainer.innerHTML = generateTable(contacts);
                 console.log('Contacts:', contacts);
             } else {
                 console.error('Failed to retrieve contacts:', fxhr.statusText);
@@ -156,3 +168,4 @@ function getContacts(username) {
         })
     })
 }
+
